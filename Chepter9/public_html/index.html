@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="exampleApp">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/bootstrap-theme.css"/>
+       <script src="js/angular.js"></script>
+        <script>
+            var myApp = angular.module("exampleApp",[]);
+            myApp.controller("dayCtrl", function ($scope){
+                var dayNames = ["Sunday", "Monday", "Tuesday", "wednesday", "Thursday", "Friday", "Saturday"];
+                $scope.day = dayNames[new Date().getDay()];
+            });
+        </script>
+    </head>
+    <body>
+        <div class="panel" ng-controller="dayCtrl">
+            <div class="page-header">
+                <h3>AngularJS App</h3>
+            </div>
+            <h4>Today is {{day || "(nuknown)"}}</h4>
+        </div>
+    </body>
+</html>
