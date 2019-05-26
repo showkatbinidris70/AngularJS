@@ -9,14 +9,57 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/bootstrap.css"/>
         <link rel="stylesheet" href="css/bootstrap-theme.css"/>
-       <script src="js/angular.js"></script>
+        <script src="js/angular.js"></script>
         <script>
-            var myApp = angular.module("exampleApp",[]);
+            var myApp = angular.module("exampleApp", []);
             myApp.controller("dayCtrl", function ($scope){
-                var dayNames = ["Sunday", "Monday", "Tuesday", "wednesday", "Thursday", "Friday", "Saturday"];
-                $scope.day = dayNames[new Date().getDay()];
+            var dayNames = ["Sunday", "Monday", "Tuesday", "wednesday", "Thursday", "Friday", "Saturday"];
+            $scope.sunDay = dayNames[new Date().getDay()];
+            $scope.monDay = dayNames[new Date().getDay()];
+            $scope.tueDay = dayNames[new Date().getDay()];
+            $scope.wedDay = dayNames[new Date().getDay()];
+            $scope.thuDay = dayNames[new Date().getDay()];
+            $scope.friDay = dayNames[new Date().getDay()];
+            $scope.satDay = dayNames[new Date().getDay()];
+            });
+            myApp.controller("tomorrowCtrl", function ($scope) {
+            var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            $scope.sunDay = dayNames[(new Date().getDay() + 0) % 7];
+            $scope.monDay = dayNames[(new Date().getDay() + 1) % 7];
+            $scope.tueDay = dayNames[(new Date().getDay() + 2) % 7];
+            $scope.wedDay = dayNames[(new Date().getDay() + 3) % 7];
+            $scope.thuDay = dayNames[(new Date().getDay() + 4) % 7];
+            $scope.friDay = dayNames[(new Date().getDay() + 5) % 7];
+            $scope.satDay = dayNames[(new Date().getDay() + 6) % 7];
+            });
+            myApp.directive("highlight", function ($filter) {
+            var dayFilter = $filter("dayName");
+            return function (scope, element, attrs) {
+            if (dayFilter(scope.sunDay) == attrs["highlight"]) {
+            element.css("color", "yollow");
+            } else if (dayFilter(scope.monDay) == attrs["highlight"]) {
+            element.css("color", "red");
+            } else if (dayFilter(scope.tueDay) == attrs["highlight"]){
+            element.css("color", "pink");
+            } else if (dayFilter(scope.wedDay) == attrs["highlight"]){
+            element.css("color", "blue");
+            } else if (dayFilter(scope.thuDay) == attrs["highlight"]){
+            element.css("color", "rose");
+            } else if (dayFilter(scope.friDay) == attrs["highlight"]){
+            element.css("color", "gray");
+            } else  (dayFilter(scope.satDay) == attrs["highlight"])
+                    element.css("color", "green");
+            }
+
+            });
+            myApp.filter("dayName", function () {
+            var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday",
+                    "Thursday", "Friday", "Saturday"];
+            return function (input) {
+            return angular.isNumber(input) ? dayNames[input] : input;
+            };
             });
         </script>
     </head>
@@ -25,7 +68,29 @@ and open the template in the editor.
             <div class="page-header">
                 <h3>AngularJS App</h3>
             </div>
-            <h4>Today is {{day || "(nuknown)"}}</h4>
+            <h4 ng-controller="dayCtrl" highlight="Thursday">
+                Today is {{sunDay|| "(unknown)" | dayName}}
+            </h4>
+            <h4 ng-controller="dayCtrl" highlight="Thursday">
+                Today is {{monDay|| "(unknown)" | dayName}}
+            </h4>
+            <h4 ng-controller="dayCtrl" highlight="Thursday">
+                Today is {{tueDay|| "(unknown)" | dayName}}
+            </h4>
+            <h4 ng-controller="dayCtrl" highlight="Thursday">
+                Today is {{wedDay|| "(unknown)" | dayName}}
+            </h4>
+            <h4 ng-controller="dayCtrl" highlight="Thursday">
+                Today is {{thuDay|| "(unknown)" | dayName}}
+            </h4>
+            <h4 ng-controller="dayCtrl" highlight="Thursday">
+                Today is {{friDay|| "(unknown)" | dayName}}
+            </h4>
+            <h4 ng-controller="dayCtrl" highlight="Thursday">
+                Today is {{satDay|| "(unknown)" | dayName}}
+            </h4>
+            <!--<h4 ng-controller="tomorrowCtrl">Tomorrow is {{sunDay|| "(unknown)" |dayName}}</h4>-->
+
         </div>
     </body>
 </html>
