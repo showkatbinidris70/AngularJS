@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  data-ng-app="">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="bootstrap.css" rel="stylesheet" /> 
+        <link href="bootstrap-theme.css" rel="stylesheet" />
+        <script src="js/angular.js"></script>
+    </head>
+    <body>
+        <div data-ng-init="firstName=' jone'">
+            <p>Hello<span data-ng-bind="firstName"></span></p>
+        </div>
+        <div>
+            <p>Name : <input type="text" data-ng-model="validae"></p>
+            <p><span data-ng-bind="validae"></span></p>
+        </div>
+        
+    </body>
+</html>
