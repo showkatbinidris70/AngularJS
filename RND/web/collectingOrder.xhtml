@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        Collecting Order
+        <style type="text/css">
+            .ui-datalist .ui-datalist-content {
+                border:0 none
+            }
+
+            .ui-datalist ul {
+                padding: 0px 10px 0 20px;
+                margin: 5px 0;
+            }
+
+            .value {
+                font-weight: bold;
+            }
+
+            .ui-autocomplete-itemtip {
+                -moz-box-sizing: content-box;
+                -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+            }
+        </style>
+
+
+        <h:form>
+            <p:growl id="msgs" showDetail="true" />
+
+            <h:panelGrid columns="2" cellpadding="5">
+                <p:outputLabel value="Simple:" for="acSimple" />
+                <p:autoComplete id="acSimple" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" />
+
+                
+
+            </h:panelGrid>
+
+            <p:commandButton value="Submit" icon="pi pi-check" update="output msgs" oncomplete="PF('dlg').show()" />
+
+            <p:dialog header="Values" resizable="false" showEffect="fade" widgetVar="dlg">
+                <p:panelGrid id="output" columns="2" columnClasses="label, value">
+                    <h:outputText value="Simple:" />
+                    <h:outputText value="#{autoCompleteView.txt1}" />
+                   
+                </p:panelGrid>
+            </p:dialog>
+        </h:form>
+    </body>
+</html>
